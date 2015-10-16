@@ -3,7 +3,7 @@ FROM centos:7
 RUN yum install -y java-1.8.0-openjdk-headless && \
   yum clean all
 
-ENV KM_VERSION=07e2494b1976106e02dea45ec58f523b5c97048d
+ENV KM_VERSION=b0fb7f28079755a085c6496b57a3dbe9d7991858
 
 RUN \
   yum install -y git rpm-build java-1.8.0-openjdk-devel && \
@@ -15,6 +15,11 @@ RUN \
   yum autoremove -y git rpm-build java-1.8.0-openjdk-devel && \
   yum clean all && \
   rm -rf /root/.sbt /root/.ivy2 /tmp/*
+
+RUN \
+  sed -e 's/^application.features=.*$/application.features=[]/' \
+    /usr/share/kafka-manager/conf/application.conf > \
+    /usr/share/kafka-manager/conf/application-features-disabled.conf
 
 EXPOSE 9000
 
