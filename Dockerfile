@@ -7,6 +7,7 @@ RUN \
   git clone https://github.com/yahoo/kafka-manager /tmp/kafka-manager && \
   cd /tmp/kafka-manager && \
   git checkout ${KM_VERSION} && \
+  echo 'scalacOptions ++= Seq("-Xmax-classfile-name", "200")' >> build.sbt && \
   ./sbt rpm:packageBin && \
   yum install -y target/rpm/RPMS/noarch/*.rpm && \
   yum autoremove -y git rpm-build && \
