@@ -1,12 +1,11 @@
 FROM pulsepointinc/centos7-java8
 
-ENV KM_VERSION=6e196ea7a332471bead747535f9676f0a2bad008
+ENV KM_RELEASE=1.3.0.4
 
 RUN \
   yum install -y git rpm-build && \
-  git clone https://github.com/yahoo/kafka-manager /tmp/kafka-manager && \
+  git clone -b "${KM_RELEASE}" https://github.com/yahoo/kafka-manager /tmp/kafka-manager && \
   cd /tmp/kafka-manager && \
-  git checkout ${KM_VERSION} && \
   echo 'scalacOptions ++= Seq("-Xmax-classfile-name", "200")' >> build.sbt && \
   ./sbt rpm:packageBin && \
   yum install -y target/rpm/RPMS/noarch/*.rpm && \
