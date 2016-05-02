@@ -1,6 +1,6 @@
 FROM pulsepointinc/centos7-java8
 
-ENV KM_RELEASE=1.3.0.4
+ENV KM_RELEASE=1.3.0.8
 
 RUN \
   yum install -y git rpm-build && \
