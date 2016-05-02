@@ -13,13 +13,8 @@ RUN \
   yum clean all && \
   rm -rf /root/.sbt /root/.ivy2 /tmp/*
 
-RUN \
-  sed -e 's/^application.features=.*$/application.features=[]/' \
-    /usr/share/kafka-manager/conf/application.conf > \
-    /usr/share/kafka-manager/conf/application-features-disabled.conf
+COPY start.sh /start.sh
 
 EXPOSE 9000
 
-VOLUME ["/usr/share/kafka-manager/conf"]
-
-CMD ["/usr/bin/kafka-manager"]
+CMD ["/start.sh"]
