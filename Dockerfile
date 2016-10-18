@@ -13,7 +13,7 @@ RUN \
   yum clean all && \
   rm -rf /root/.sbt /root/.ivy2 /tmp/*
 
-COPY start.sh /start.sh
+COPY ./start.sh /start.sh
 
 EXPOSE 9000
 
