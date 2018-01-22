@@ -1,6 +1,6 @@
 FROM pulsepointinc/centos7-java8:latest
 
-ENV KM_RELEASE=1.3.1.8
+ENV KM_RELEASE=1.3.3.15
 
 RUN \
   rpm --rebuilddb && \
